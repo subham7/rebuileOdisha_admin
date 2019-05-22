@@ -10,10 +10,13 @@ import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
 import { MdChat, MdBookmark } from "react-icons/md"
 import { IoMdCalendar } from "react-icons/io"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 
 // Components
-import { Paper, Affix, SearchBar } from "atoms"
+import {
+  Paper,
+  Affix //SearchBar
+} from "atoms"
 
 // Tabs
 import Tabs from "@material-ui/core/Tabs"
@@ -83,21 +86,13 @@ class Navbar extends Component {
                 {this.props.name}
               </Typography>
 
-              <IconButton style={{ color: "#fff" }} href="/dashboard/schedule">
-                <IoMdCalendar />
-              </IconButton>
-              <IconButton style={{ color: "#fff" }}>
-                <MdBookmark />
-              </IconButton>
-              <IconButton style={{ color: "#fff" }}>
-                <MdChat />
-              </IconButton>
-              <div>
+              <div style={{ width: "100%" }}>
                 <IconButton
                   aria-owns={open ? "menu-appbar" : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
+                  style={{ float: "right" }}
                 >
                   <AccountCircle />
                 </IconButton>
@@ -117,7 +112,7 @@ class Navbar extends Component {
                 >
                   {this.props.menuItem.map((data, index) => (
                     <MenuItem key={index} onClick={this.handleClose}>
-                      <Link to={data.link} style={{ textDecoration: "none" }}>
+                      <Link href={data.link} style={{ textDecoration: "none" }}>
                         {data.label}
                       </Link>
                     </MenuItem>
@@ -126,16 +121,16 @@ class Navbar extends Component {
                   {/*<MenuItem onClick={this.handleClose}>My account</MenuItem>*/}
                 </Menu>
               </div>
-              <SearchBar
-                onChange={this.props.onChange}
-                onRequestSearch={this.props.onRequestSearch}
-                style={{
-                  backgroundColor: "#2853bb",
-                  marginLeft: "14px",
-                  maxWidth: "100%",
-                  color: "#ddd"
-                }}
-              />
+              {/*<SearchBar
+              onChange={this.props.onChange}
+              onRequestSearch={this.props.onRequestSearch}
+              style={{
+                backgroundColor: "#2853bb",
+                marginLeft: "14px",
+                maxWidth: "100%",
+                color: "#ddd"
+              }}
+            />*/}
             </Toolbar>
           ) : null}
           {/*this.props.displayNotification ? ( */}

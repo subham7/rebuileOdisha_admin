@@ -1,14 +1,11 @@
 import React from "react"
-import { UiElements } from "atoms"
+import { Upload, Icon, message as Message } from "antd"
 
-const Upload = UiElements.Upload
 const Dragger = Upload.Dragger
-const Icon = UiElements.Icon
-const Message = UiElements.message
 
 const Upload1 = props => {
   const action = {
-    action: [props.action],
+    ...props.config,
     onChange(info) {
       const status = info.file.status
       if (status !== "uploading") {
@@ -24,8 +21,8 @@ const Upload1 = props => {
 
   return (
     <div>
-      <p>{props.label}</p>
-      <Dragger name={props.name} multiple={props.multiple} {...action}>
+      <p style={{ color: "#3062cf" }}>{props.label}</p>
+      <Dragger {...action}>
         <p className="ant-upload-drag-icon">
           <Icon type="inbox" />
         </p>

@@ -1,16 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import React from "react"
+import { connect } from "react-redux"
 // import { startClock, serverRenderClock } from '../src/store'
-import "./main.css"
-import Router from 'next/router'
-
+import Router from "next/router"
+import Login from "./login"
 
 class App extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props)
   }
-  static getInitialProps ({ reduxStore, req }) {
+  static getInitialProps({ reduxStore, req }) {
     // console.log(req)
     const isServer = !!req
     // reduxStore.dispatch(serverRenderClock(isServer))
@@ -18,9 +16,8 @@ class App extends React.Component {
     return {}
   }
 
-  componentDidMount () {
-   
-   // Add redux api here
+  componentDidMount() {
+    // Add redux api here
     // this.props.loginDispatch({uid:"b216008", pwd:"Ankit16@19"}).then(res=>{
     //   console.log(res)
     // }).catch(err =>{
@@ -28,23 +25,15 @@ class App extends React.Component {
     // })
   }
 
- 
-
- render() {
-    return (
-      <div> 
-        <button>Test button</button>
-      </div>
-    );
+  render() {
+    return <Login />
   }
 }
 
-
-const mapStateToProps = state => ({
-  
-})
+const mapStateToProps = state => ({})
 // Example Syntax for writing dispatch
-const mapDispatchToProps = dispatch => ({
-  
-})
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({})
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { Logo, Paragraph } from "./../../atoms"
 import "./style.css"
 
@@ -15,7 +15,7 @@ const Sidebar = props => {
   const element = (
     <div className="sidebar-element-wrapper">
       {props.element.map((data, index) => (
-        <Link to={data.url}>
+        <Link href={data.url}>
           <div className="sidebar-element" key={index}>
             <p className="sidebar-icon">{data.icon}</p>
             <Paragraph style={style}>{data.text}</Paragraph>

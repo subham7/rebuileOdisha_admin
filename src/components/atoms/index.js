@@ -1,6 +1,3 @@
-// Ant design
-export { default as UiElements } from "./Antd/Antd.atom"
-
 // Material UI Grid
 export { default as Grid } from "./Grid/Grid.atom"
 
@@ -22,7 +19,7 @@ export { default as Avatar } from "./Avatar/Avatar.atom"
 export { default as CardMedia } from "./CardMedia/CardMedia.atom"
 export { default as Checkbox } from "./Checkbox/Checkbox.atom"
 export { default as Loader } from "./Loader/Loader.atom"
-export { default as SearchBar } from "./SearchBar/SearchBar.atom"
+// export { default as SearchBar } from "./SearchBar/SearchBar.atom"
 export { default as Chips } from "./Chips/Chips.atom"
 export { default as Popover } from "./Popover/Popover.atom"
 export { default as Tooltip } from "./Tooltip/Tooltip.atom"

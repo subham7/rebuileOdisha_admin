@@ -1,7 +1,6 @@
 import React, { Component } from "react"
-import { UiElements, Button } from "atoms"
-
-const Modal = UiElements.Modal
+import { Modal } from "antd"
+import { Button } from "atoms"
 
 class Modal1 extends Component {
   constructor(props) {
