@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("admin-api-key")) Router.push("/dashboard/project")
+    if (localStorage.getItem("admin-api-key")) Router.push("/admin/dashboard/project")
     else this.setState({ renderLogin: true })
   }
 
