@@ -20,7 +20,7 @@ class App extends Component {
     {
       icon: <MdFolderShared />,
       text: "Project",
-      url: "/dashboard/project"
+      url: "/admin/dashboard/project"
     }
   ]
 
