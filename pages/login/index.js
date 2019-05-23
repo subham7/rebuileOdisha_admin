@@ -23,7 +23,7 @@ class App extends Component {
         return token.set(res.token)
       })
       .then(_ => {
-        Router.push("/dashboard/add-project")
+        Router.push("/dashboard/project")
       })
       .catch(err => console.log(err))
   }

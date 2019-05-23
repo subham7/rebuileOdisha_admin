@@ -4,41 +4,54 @@ import wrapper from "./wrapper"
 
 // Component
 import { Dashboard } from "organisms"
-import AddProject from "./.addProject"
-import UploadImage from "./.uploadImage"
 import NotFound from "./.notFound"
+import Project from "./.project"
+
+// Icons
+import { MdDescription } from "react-icons/md"
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { tabValue: 0 }
   }
 
   sidebar = [
     {
-      icon: <div>H</div>,
-      text: "Home",
-      url: "/dashboard/add-project"
+      icon: <MdDescription />,
+      text: "Project",
+      url: "/dashboard/project"
     }
   ]
 
   routeFile = route => {
     switch (route) {
-      case "add-project":
-        return <AddProject />
-      case "upload-image":
-        return <UploadImage />
+      case "project":
+        return <Project tabValue={this.state.tabValue} />
       default:
         return <NotFound />
     }
   }
+
+  getTabData = route => {
+    switch (route) {
+      case "project":
+        return [{ label: "All Projects" }, { label: "Add Project" }]
+      default:
+        return <NotFound />
+    }
+  }
+
+  handleTabValue = (event, newValue) => this.setState({ tabValue: newValue })
 
   render() {
     return (
       <Dashboard
         sidebarElement={this.sidebar}
         displayNotification={false}
-        displayTabs={false}
+        tabValue={this.state.tabValue}
+        tabData={this.getTabData(this.props.router.query.page)}
+        handleTabValue={this.handleTabValue}
         name="Admin"
       >
         {this.routeFile(this.props.router.query.page)}

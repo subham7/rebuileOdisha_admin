@@ -133,8 +133,8 @@ class Navbar extends Component {
             />*/}
             </Toolbar>
           ) : null}
-          {/*this.props.displayNotification ? ( */}
-          {true ? (
+
+          {this.props.displayNotification ? (
             <Toolbar>
               <div className="notification-container">
                 {this.props.notification.map((data, index) => (

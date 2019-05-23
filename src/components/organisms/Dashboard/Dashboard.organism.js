@@ -9,14 +9,6 @@ const conStyle = {
 
 const link = [
   {
-    label: "Profile",
-    link: "/dashboard/profile"
-  },
-  {
-    label: "Employee Directory",
-    link: "/dashboard/employee"
-  },
-  {
     label: "Logout",
     link: "/logout"
   }
