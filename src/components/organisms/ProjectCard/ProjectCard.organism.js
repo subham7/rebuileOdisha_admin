@@ -34,7 +34,7 @@ const ProjectCard = props => (
       </Grid>
       <Grid item sm={3}>
         <Paragraph>Estimated Cost</Paragraph>
-        <Subtitle>{props.EstimatedCost}</Subtitle>
+        <Subtitle>INR {props.EstimatedCost}</Subtitle>
       </Grid>
       <Grid item sm={3}>
         <Paragraph>Start Date</Paragraph>

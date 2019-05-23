@@ -159,7 +159,7 @@ class Navbar extends Component {
             ))}
           </Tabs>*/ ? (
             <Affix offsetTop={0}>
-              <div style={{ backgroundColor: "#3062cf" }}>
+              <div>
                 <Tabs
                   value={this.props.tabValue}
                   onChange={this.props.handleTabValue}

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { destroy } from "redux-form"
 
 // API
 import {
@@ -34,6 +35,7 @@ class App extends Component {
       .addProject(this.props.form.addProjectForm.values)
       .then(_ => Message.success("Project added successfully"))
       .catch(err => Message.error("There was a problem"))
+    this.props.destroyReduxForm("addProjectForm")
   }
 
   render() {
@@ -60,6 +62,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  destroyReduxForm: form => dispatch(destroy(form)),
   districtAutofill: () => dispatch(districtAutofill.action()),
   blockAutofill: () => dispatch(blockAutofill.action()),
   gpAutofill: () => dispatch(gpAutofill.action()),
