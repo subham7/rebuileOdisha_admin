@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { withRouter } from "next/router"
+import wrapper from "./wrapper"
 
 // Component
 import { Dashboard } from "organisms"
@@ -46,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+export default wrapper(withRouter(App))

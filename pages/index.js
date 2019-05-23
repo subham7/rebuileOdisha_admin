@@ -2,11 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 // import { startClock, serverRenderClock } from '../src/store'
 import Router from "next/router"
+
+// Component
 import Login from "./login"
+import { Loader } from "atoms"
 
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { renderLogin: false }
   }
   static getInitialProps({ reduxStore, req }) {
     // console.log(req)
@@ -17,16 +21,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // Add redux api here
-    // this.props.loginDispatch({uid:"b216008", pwd:"Ankit16@19"}).then(res=>{
-    //   console.log(res)
-    // }).catch(err =>{
-    //   console.log(err)
-    // })
+    if (localStorage.getItem("admin-api-key"))
+      Router.push("/dashboard/add-project")
+    else this.setState({ renderLogin: true })
   }
 
   render() {
-    return <Login />
+    if (this.state.renderLogin) return <Login />
+    else return <Loader />
   }
 }
 
