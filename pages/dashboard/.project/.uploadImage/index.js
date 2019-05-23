@@ -23,7 +23,7 @@ class App extends Component {
     this.setState({ uploadStatus: true })
     console.log(this.state)
 
-    return this.state.uploadStatus
+    return false
   }
 
   formValues = () => this.props.form.uploadImageForm.values

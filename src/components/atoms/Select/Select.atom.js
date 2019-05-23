@@ -35,7 +35,7 @@ const Select1 = props => {
       >
         {props.option.map((optionData, index) => {
           return (
-            <Option key={index} value={optionData.id}>
+            <Option key={index} value={optionData.name}>
               {optionData.name}
             </Option>
           )

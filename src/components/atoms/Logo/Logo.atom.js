@@ -6,7 +6,7 @@ const Logo = props => {
     height: props.height + "em",
     width: "auto"
   }
-  return <div>Logo</div>
+  return <img src="/static/images/favicon.png" alt="" style={style} />
   // switch (props.type) {
   //   case "full":
   //     return <img src={LogoFull} alt={props.logoAlt} style={style} />

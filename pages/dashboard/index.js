@@ -8,7 +8,7 @@ import NotFound from "./.notFound"
 import Project from "./.project"
 
 // Icons
-import { MdDescription } from "react-icons/md"
+import { MdFolderShared } from "react-icons/md"
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class App extends Component {
 
   sidebar = [
     {
-      icon: <MdDescription />,
+      icon: <MdFolderShared />,
       text: "Project",
       url: "/dashboard/project"
     }
@@ -36,7 +36,11 @@ class App extends Component {
   getTabData = route => {
     switch (route) {
       case "project":
-        return [{ label: "All Projects" }, { label: "Add Project" }]
+        return [
+          { label: "All Projects" },
+          { label: "Add Project" },
+          { label: "Upload Image" }
+        ]
       default:
         return <NotFound />
     }

@@ -11,7 +11,7 @@ import {
 
 // Components
 import { AddProjectForm } from "forms"
-import { Loader, Button } from "atoms"
+import { Loader, Button, Message } from "atoms"
 import { AddProject } from "templates"
 
 class App extends Component {
@@ -30,7 +30,10 @@ class App extends Component {
   }
 
   uploadData = () => {
-    this.props.addProject(this.props.form.addProjectForm.values)
+    this.props
+      .addProject(this.props.form.addProjectForm.values)
+      .then(_ => Message.success("Project added successfully"))
+      .catch(err => Message.error("There was a problem"))
   }
 
   render() {

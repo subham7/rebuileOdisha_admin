@@ -22,8 +22,8 @@ const Form = ({
         <Field
           name="Department"
           label="Department"
-          option={test}
-          component={Select}
+          //option={test}
+          component={Input}
         />
       )
     },
@@ -53,8 +53,7 @@ const Form = ({
           name="GP"
           label="GP"
           //option={gpAutofillData.response.data}
-          option={test}
-          component={Select}
+          component={Input}
         />
       )
     },
@@ -63,8 +62,8 @@ const Form = ({
         <Field
           name="Village"
           label="Village"
-          option={test}
-          component={Select}
+          //option={test}
+          component={Input}
         />
       )
     },

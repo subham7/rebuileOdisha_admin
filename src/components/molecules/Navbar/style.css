@@ -18,6 +18,9 @@
   overflow: hidden;
 }
 .MuiAppBar-colorPrimary-10 {
+  background-color: #0b9656 !important;
+}
+.MuiAppBar-colorPrimary-11 {
   background-color: #3062cf !important;
 }
 
