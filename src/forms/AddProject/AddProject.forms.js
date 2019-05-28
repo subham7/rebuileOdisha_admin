@@ -7,12 +7,7 @@ import { FormStructure } from "molecules"
 
 const test = [{ id: 1, name: "test1" }, { id: 2, name: "test2" }]
 
-const Form = ({
-  handleSubmit,
-  districtAutofillData,
-  gpAutofillData,
-  blockAutofillData
-}) => {
+const Form = ({ handleSubmit, ...props }) => {
   const field = [
     {
       field: <Field name="ProjectName" label="Project Name" component={Input} />
@@ -32,19 +27,15 @@ const Form = ({
         <Field
           name="District"
           label="District"
-          option={districtAutofillData.response.data}
+          option={test}
+          onBlur={props.handleBlur.blockFun}
           component={Select}
         />
       )
     },
     {
       field: (
-        <Field
-          name="Block"
-          label="Block"
-          option={blockAutofillData.response.data}
-          component={Select}
-        />
+        <Field name="Block" label="Block" option={test} component={Select} />
       )
     },
     {
@@ -91,6 +82,16 @@ const Form = ({
       field: (
         <Field name="EndDate" type="date" label="End Date" component={Input} />
       )
+    },
+    {
+      field: (
+        <Field
+          name="description"
+          type="multiline"
+          label="Description"
+          component={Input}
+        />
+      )
     }
   ]
 
@@ -100,9 +101,9 @@ const Form = ({
 }
 
 const mapStateToProps = state => ({
-  districtAutofillData: state.districtAutofill,
-  gpAutofillData: state.gpAutofill,
-  blockAutofillData: state.blockAutofill
+  // districtAutofillData: state.districtAutofill,
+  // gpAutofillData: state.gpAutofill,
+  // blockAutofillData: state.blockAutofill
 })
 
 export default reduxForm({ form: "addProjectForm" })(

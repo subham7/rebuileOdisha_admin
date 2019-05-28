@@ -28,7 +28,7 @@ const Select1 = props => {
         optionFilterProp="children"
         onChange={props.onChange}
         onFocus={handleFocus}
-        onBlur={handleBlur}
+        onBlur={props.handleBlur}
         filterOption={(input, option) =>
           option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
