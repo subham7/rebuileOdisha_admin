@@ -5,9 +5,15 @@ import { reduxForm, Field } from "redux-form"
 import { Input, Select } from "atoms"
 import { FormStructure } from "molecules"
 
+const autofillFunc = () => {
+  const test = [{ id: 1, name: "test1" }, { id: 2, name: "test2" }]
+  return test
+}
 const test = [{ id: 1, name: "test1" }, { id: 2, name: "test2" }]
 
 const Form = ({ handleSubmit, ...props }) => {
+  console.log(autofillFunc())
+
   const field = [
     {
       field: <Field name="ProjectName" label="Project Name" component={Input} />
@@ -17,7 +23,7 @@ const Form = ({ handleSubmit, ...props }) => {
         <Field
           name="Department"
           label="Department"
-          //option={test}
+          // option={test}
           component={Input}
         />
       )
@@ -27,8 +33,7 @@ const Form = ({ handleSubmit, ...props }) => {
         <Field
           name="District"
           label="District"
-          option={test}
-          onBlur={props.handleBlur.blockFun}
+          option={autofillFunc()}
           component={Select}
         />
       )

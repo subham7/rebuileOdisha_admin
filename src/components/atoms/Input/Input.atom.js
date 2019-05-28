@@ -79,4 +79,5 @@ Input.defaultProps = {
   margin: "normal"
 }
 
-export default reduxFormField(Input1)
+// export default reduxFormField(Input1)
+export default Input1

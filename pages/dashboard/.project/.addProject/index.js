@@ -13,14 +13,16 @@ import {
 } from "reduxHelper"
 
 // Components
+import { Upload } from "antd"
 import { AddProjectForm } from "forms"
 import { Loader, Button, Message } from "atoms"
 import { AddProject } from "templates"
+import Field from "./addProject.data"
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { fileList: [] }
+    this.state = { fileList: [], formValue: {} }
   }
 
   componentDidMount() {
@@ -28,7 +30,8 @@ class App extends Component {
   }
 
   loadData = () => {
-    // this.props.districtAutofill()
+    this.props.allDistrictAutofill()
+    this.props.allDepartmentAutofill()
     // this.props.blockAutofill()
     // this.props.gpAutofill()
   }
@@ -37,19 +40,37 @@ class App extends Component {
    * Binds image and form value from redux to FormData
    * API request to add project
    */
-  uploadData = data => {
+  uploadData = (e, data) => {
     e.preventDefault()
+
     let formData = new FormData()
-    formData.append("image", this.state.fileList[0])
+    formData.append("image", this.state.fileList[0].originFileObj)
+
     Object.keys(data).forEach(key => formData.append(key, data[key]))
+
+    // for (var key of formData.entries()) {
+    //   if (key[0] === "StartDate")
+    //     formData.entries()[key][1] = key[1].format("YYYY-MM-DD")
+    //   else if (key[0] === "EndDate")
+    //     formData.entries()[key][1] = key[1].format("YYYY-MM-DD")
+    // }
+
+    // for (var key in data) {
+    //   formData.append(key, data[key])
+    // }
+
     this.props
       .addProject(formData)
       .then(_ => {
         Message.success("Project added successfully")
-        this.props.destroyReduxForm("addProjectForm")
+        this.setState({ formValue: {} })
+        //this.props.destroyReduxForm("addProjectForm")
         this.setState({ fileList: [] })
       })
-      .catch(_ => Message.error("There was a problem"))
+      .catch(err => {
+        Message.error("There was a problem")
+        console.log(err)
+      })
   }
 
   handleUpload = ({ fileList }) => {
@@ -57,10 +78,55 @@ class App extends Component {
     this.setState({ fileList })
   }
 
+  onSubmit = () => {
+    this.props
+      .addProject(this.state.formValue)
+      .then(_ => {
+        Message.success("Project added successfully")
+      })
+      .catch(_ => Message.error("There was a problem"))
+  }
+
   handleBlur = {
     blockFun: () => {
       console.log("block fun")
     }
+  }
+
+  handleChange = e => {
+    this.setState({
+      formValue: { ...this.state.formValue, [e.target.name]: e.target.value }
+    })
+  }
+
+  handleValue = (value, name) => {
+    this.setState({ formValue: { ...this.state.formValue, [name]: value } })
+  }
+
+  handleData = (date, dateString, name) => {
+    this.setState({
+      formValue: { ...this.state.formValue, [name]: dateString }
+    })
+  }
+
+  districtOnFocus = _ => {
+    this.setState({
+      formValue: { ...this.state.formValue, GP: "" }
+    })
+    this.setState({
+      formValue: { ...this.state.formValue, Block: "" }
+    })
+  }
+
+  blockOnFocus = districtID => {
+    this.props.blockOfDistrictAutofill(districtID)
+    this.setState({
+      formValue: { ...this.state.formValue, GP: "" }
+    })
+  }
+
+  gpOnFocus = blockID => {
+    this.props.gpOfBlockAutofill(blockID)
   }
 
   // uploadProps = {
@@ -72,34 +138,46 @@ class App extends Component {
   // }
 
   render() {
-    // if (
-    //   this.props.districtAutofillData.isLoaded &&
-    //   this.props.blockAutofillData.isLoaded &&
-    //   this.props.gpAutofillData
-    // )
-    return (
-      <AddProject
-        listType="picture-card"
-        fileList={this.state.fileList}
-        onChange={this.handleUpload}
-        beforeUpload={() => false}
-        multiple={false}
-      >
-        <AddProjectForm handleBlur={this.handleBlur} />
-        <Button
-          onClick={() => this.uploadData(this.props.form.addProjectForm.values)}
-        >
-          Submit
-        </Button>
-      </AddProject>
+    if (
+      this.props.allDistrictAutofillData.isLoaded &&
+      this.props.allDepartmentAutofillData.isLoaded
+      // this.props.gpAutofillData
     )
-    // else return <Loader />
+      return (
+        <AddProject
+        >
+          {/*<AddProjectForm handleBlur={this.handleBlur} />*/}
+          <Field that={this} />
+          <Upload
+            listType="picture-card"
+            fileList={this.state.fileList}
+            onChange={this.handleUpload}
+            beforeUpload={() => false}
+          >
+            Upload
+          </Upload>
+          <br />
+          <Button
+            onClick={
+              e => this.uploadData(e, this.state.formValue)
+              //(this.props.form.addProjectForm.values)
+            }
+            //onClick={this.onSubmit}
+          >
+            Submit
+          </Button>
+        </AddProject>
+      )
+    else return <Loader />
   }
 }
 
 const mapStateToProps = state => ({
-  form: state.form
-  // districtAutofillData: state.districtAutofill,
+  form: state.form,
+  allDistrictAutofillData: state.allDistrictAutofill,
+  allDepartmentAutofillData: state.allDepartmentAutofill,
+  blockOfDistrictAutofillData: state.blockOfDistrictAutofill,
+  gpOfBlockAutofillData: state.gpOfBlockAutofill
   // blockAutofillData: state.blockAutofill,
   // gpAutofillData: state.gpAutofill
 })
@@ -111,7 +189,7 @@ const mapDispatchToProps = dispatch => ({
   blockOfDistrictAutofill: districtID =>
     dispatch(blockOfDistrictAutofill.action(districtID)),
   gpOfBlockAutofill: blockID => dispatch(gpOfBlockAutofill.action(blockID)),
-  allDepartmentAutofill: () => allDepartmentAutofill.action(),
+  allDepartmentAutofill: () => dispatch(allDepartmentAutofill.action()),
   addProject: data => dispatch(addProject.action(data))
 })
 

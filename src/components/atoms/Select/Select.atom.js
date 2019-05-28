@@ -27,7 +27,7 @@ const Select1 = props => {
         style={{ width: "100%" }}
         optionFilterProp="children"
         onChange={props.onChange}
-        onFocus={handleFocus}
+        onFocus={props.onFocus}
         onBlur={props.handleBlur}
         filterOption={(input, option) =>
           option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -35,7 +35,7 @@ const Select1 = props => {
       >
         {props.option.map((optionData, index) => {
           return (
-            <Option key={index} value={optionData.name}>
+            <Option key={index} value={optionData.id}>
               {optionData.name}
             </Option>
           )
@@ -58,4 +58,5 @@ Select1.defaultProps = {
   helperText: ""
 }
 
-export default reduxFormField(Select1)
+// export default reduxFormField(Select1)
+export default Select1

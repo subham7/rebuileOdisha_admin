@@ -38,8 +38,8 @@ class App extends Component {
       case "project":
         return [
           { label: "All Projects" },
-          { label: "Add Project" },
-          { label: "Upload Image" }
+          { label: "Add Project" }
+          //{ label: "Upload Image" }
         ]
       default:
         return <NotFound />
