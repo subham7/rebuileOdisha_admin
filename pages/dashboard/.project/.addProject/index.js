@@ -32,8 +32,6 @@ class App extends Component {
   loadData = () => {
     this.props.allDistrictAutofill()
     this.props.allDepartmentAutofill()
-    // this.props.blockAutofill()
-    // this.props.gpAutofill()
   }
 
   /*
@@ -45,19 +43,7 @@ class App extends Component {
 
     let formData = new FormData()
     formData.append("image", this.state.fileList[0].originFileObj)
-
     Object.keys(data).forEach(key => formData.append(key, data[key]))
-
-    // for (var key of formData.entries()) {
-    //   if (key[0] === "StartDate")
-    //     formData.entries()[key][1] = key[1].format("YYYY-MM-DD")
-    //   else if (key[0] === "EndDate")
-    //     formData.entries()[key][1] = key[1].format("YYYY-MM-DD")
-    // }
-
-    // for (var key in data) {
-    //   formData.append(key, data[key])
-    // }
 
     this.props
       .addProject(formData)
@@ -74,7 +60,6 @@ class App extends Component {
   }
 
   handleUpload = ({ fileList }) => {
-    console.log("fileList", fileList)
     this.setState({ fileList })
   }
 
@@ -85,12 +70,6 @@ class App extends Component {
         Message.success("Project added successfully")
       })
       .catch(_ => Message.error("There was a problem"))
-  }
-
-  handleBlur = {
-    blockFun: () => {
-      console.log("block fun")
-    }
   }
 
   handleChange = e => {
@@ -144,8 +123,7 @@ class App extends Component {
       // this.props.gpAutofillData
     )
       return (
-        <AddProject
-        >
+        <AddProject>
           {/*<AddProjectForm handleBlur={this.handleBlur} />*/}
           <Field that={this} />
           <Upload
