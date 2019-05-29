@@ -9,7 +9,7 @@ class App extends Component {
 
   componentDidMount() {
     token.remove()
-    Router.push("/")
+    Router.push("/admin")
   }
 
   render() {

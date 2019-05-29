@@ -28,22 +28,26 @@ const ProjectCard = props => (
         <Paragraph>GP</Paragraph>
         <Subtitle>{props.GP}</Subtitle>
       </Grid>
-      <Grid item sm={3}>
+      {/*<Grid item sm={3}>
         <Paragraph>Village</Paragraph>
         <Subtitle>{props.Village}</Subtitle>
-      </Grid>
+</Grid>*/}
       <Grid item sm={3}>
         <Paragraph>Estimated Cost</Paragraph>
         <Subtitle>INR {props.EstimatedCost}</Subtitle>
       </Grid>
-      <Grid item sm={3}>
-        <Paragraph>Start Date</Paragraph>
-        <Subtitle>{props.StartDate.split("T")[0]}</Subtitle>
-      </Grid>
-      <Grid item sm={3}>
-        <Paragraph>End Date</Paragraph>
-        <Subtitle>{props.EndDate.split("T")[0]}</Subtitle>
-      </Grid>
+      {props.StartDate ? (
+        <Grid item sm={3}>
+          <Paragraph>Start Date</Paragraph>
+          <Subtitle>{props.StartDate.split("T")[0]}</Subtitle>
+        </Grid>
+      ) : null}
+      {props.EndData ? (
+        <Grid item sm={3}>
+          <Paragraph>End Date</Paragraph>
+          <Subtitle>{props.EndDate.split("T")[0]}</Subtitle>
+        </Grid>
+      ) : null}
     </Grid>
     {props.displayBtn ? null : (
       <div>

@@ -42,7 +42,9 @@ class App extends Component {
     e.preventDefault()
 
     let formData = new FormData()
-    formData.append("image", this.state.fileList[0].originFileObj)
+    if (Object.keys(this.state.fileList).length != 0) {
+      formData.append("image", this.state.fileList[0].originFileObj)
+    }
     Object.keys(data).forEach(key => formData.append(key, data[key]))
 
     this.props
@@ -55,7 +57,6 @@ class App extends Component {
       })
       .catch(err => {
         Message.error("There was a problem")
-        console.log(err)
       })
   }
 
