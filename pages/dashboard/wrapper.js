@@ -14,7 +14,7 @@ export default function init(WrappedComponent) {
 
     componentDidMount() {
       if (!localStorage.getItem("admin-api-key")) {
-        Router.push("/")
+        Router.push("/admin")
       }
       token.setFromStorage()
       this.setState({ setToken: true })

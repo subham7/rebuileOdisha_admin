@@ -1,2 +1,2 @@
 let ROOTURL
-export default (ROOTURL = "http://127.0.0.1/api")
+export default (ROOTURL = "http://rebuild.odisha.gov.in/api")

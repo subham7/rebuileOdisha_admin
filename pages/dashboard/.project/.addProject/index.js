@@ -29,24 +29,25 @@ class App extends Component {
     this.loadData()
   }
 
+/*
+  * Loads all the autofill data
+  */
   loadData = () => {
     this.props.allDistrictAutofill()
     this.props.allDepartmentAutofill()
   }
 
-  /*
-   * Binds image and form value from redux to FormData
-   * API request to add project
-   */
+/*
+  * Binds image and form value from redux to FormData
+  * API request to add project
+  */
   uploadData = (e, data) => {
     e.preventDefault()
-
     let formData = new FormData()
     if (Object.keys(this.state.fileList).length != 0) {
       formData.append("image", this.state.fileList[0].originFileObj)
     }
     Object.keys(data).forEach(key => formData.append(key, data[key]))
-
     this.props
       .addProject(formData)
       .then(_ => {
@@ -55,7 +56,7 @@ class App extends Component {
         //this.props.destroyReduxForm("addProjectForm")
         this.setState({ fileList: [] })
       })
-      .catch(err => {
+      .catch(_ => {
         Message.error("There was a problem")
       })
   }

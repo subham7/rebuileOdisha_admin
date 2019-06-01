@@ -6,9 +6,10 @@ import wrapper from "./wrapper"
 import { Dashboard } from "organisms"
 import NotFound from "./.notFound"
 import Project from "./.project"
+import Reports from "./.reports"
 
 // Icons
-import { MdFolderShared } from "react-icons/md"
+import { MdFolderShared, MdPieChart } from "react-icons/md"
 
 class App extends Component {
   constructor(props) {
@@ -22,12 +23,19 @@ class App extends Component {
       text: "Project",
       url: "/admin/dashboard/project"
     }
+    // {
+    //   icon: <MdPieChart />,
+    //   text: "Reports",
+    //   url: "/admin/dashboard/reports"
+    // }
   ]
 
   routeFile = route => {
     switch (route) {
       case "project":
         return <Project tabValue={this.state.tabValue} />
+      case "reports":
+        return <Reports tabValue={this.state.tabValue} />
       default:
         return <NotFound />
     }
@@ -41,8 +49,10 @@ class App extends Component {
           { label: "Add Project" }
           //{ label: "Upload Image" }
         ]
+      case "reports":
+        return [{ label: "Report" }, { label: "CMRF" }, { label: "OSDMA" }]
       default:
-        return <NotFound />
+        return [{ label: "" }]
     }
   }
 
